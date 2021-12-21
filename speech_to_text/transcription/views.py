@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from .forms import TranscribeForm
 from .models import Transcript
-<<<<<<< HEAD
 from google.cloud import speech_v1p1beta1 as speech
-=======
->>>>>>> 5cbe19cb7620306dfc1d36bd168615aed0ac95ea
 
 
 def index(request):
@@ -15,7 +12,6 @@ def index(request):
         # We execute the request only if the request is a POST request
 
         form = TranscribeForm(request.POST, request.FILES)
-<<<<<<< HEAD
 
         # Check if the form is valid:
         if form.is_valid():
@@ -38,7 +34,7 @@ def index(request):
             elif audio_file.name.endswith(".flac"):
                 encoding = speech.RecognitionConfig.AudioEncoding.FLAC
             elif audio_file.name.endswith(".wav"):
-                encoding = speech.RecognitionConfig.AudioEncoding.MULAW
+                encoding = speech.RecognitionConfig.AudioEncoding.LINEAR16
             elif audio_file.name.endswith(".opus"):
                 encoding = speech.RecognitionConfig.AudioEncoding.OGG_OPUS
 
@@ -82,7 +78,7 @@ def index(request):
                 # Adding speaker tags to each speaker's transcription
                 for word in all_words:
 
-                    if not curr_tag:
+                    if not curr_tag or curr_tag != word.speaker_tag:
                         curr_tag = word.speaker_tag
                         speakers[curr_tag] = speaker_counter
                         speaker_counter += 1
@@ -99,24 +95,6 @@ def index(request):
 
             # Transcript is saved so that it can be used later if needed
             transcript.save()
-
-
-=======
-        print("HERE3")
-        print(form.is_valid())
-
-        # Check if the form is valid:
-        if form.is_valid():
-            print("HERE2")
-
-            # Retrieving the audio file from transcribe request that form has submitted
-            audio_file = request.FILES['audio_file']
-
-            print(audio_file.name)
-            # We need to transcribe now
-
-            transcript = Transcript(transcript="This is the transcript")
->>>>>>> 5cbe19cb7620306dfc1d36bd168615aed0ac95ea
 
     else:
         # If the request method is not POST, we simply display the form

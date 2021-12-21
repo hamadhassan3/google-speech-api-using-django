@@ -8,7 +8,6 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
     <body>
-<<<<<<< HEAD
         <div id="parent">
             </br>
             </br>
@@ -18,7 +17,17 @@
                     <form id="form-id" action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div id="audio-input" class="form-buttons">
-                            {{ form.as_table }}
+                            {% for field in form.visible_fields %}
+                              <tr>
+                                <th>{{ field.label_tag }}</th>
+                                <td>
+                                  {{ field.errors }}
+                                  {{ field }}
+                                </td>
+                              </tr>
+                            </br>
+                            </br>
+                            {% endfor %}
                         </div>
                         </br>
 
@@ -35,22 +44,7 @@
                 {% endblock %}
             </div>
         </div>
-=======
 
-    {% block content %}
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Submit">
-            <div>
-                Transcript:
-                {% if transcript %}
-                    {{ transcript.transcript }}
-                {% endif %}
-            </div>
-        </form>
-    {% endblock %}
 
->>>>>>> 5cbe19cb7620306dfc1d36bd168615aed0ac95ea
     </body>
 </html>
