@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Transcription</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+<<<<<<< HEAD
+        <div id="parent">
+            </br>
+            </br>
+            <h1>Speech To Text</h1>
+            <div id="form-container">
+                {% block content %}
+                    <form id="form-id" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="audio-input" class="form-buttons">
+                            {{ form.as_table }}
+                        </div>
+                        </br>
+
+                        <input id="transcribe" class="form-buttons" type="submit" value="Transcribe!">
+
+                    </form>
+                    </br>
+                    <div id="transcript">
+                        <b>Transcript:</b>
+                        {% if transcript %}
+                            {{ transcript.transcript }}
+                        {% endif %}
+                    </div>
+                {% endblock %}
+            </div>
+        </div>
+=======
+
+    {% block content %}
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+            <div>
+                Transcript:
+                {% if transcript %}
+                    {{ transcript.transcript }}
+                {% endif %}
+            </div>
+        </form>
+    {% endblock %}
+
+>>>>>>> 5cbe19cb7620306dfc1d36bd168615aed0ac95ea
+    </body>
+</html>
