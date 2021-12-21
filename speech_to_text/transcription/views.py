@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from .forms import TranscribeForm
 from .models import Transcript
+<<<<<<< HEAD
 from google.cloud import speech_v1p1beta1 as speech
+=======
+>>>>>>> 5cbe19cb7620306dfc1d36bd168615aed0ac95ea
 
 
 def index(request):
@@ -12,6 +15,7 @@ def index(request):
         # We execute the request only if the request is a POST request
 
         form = TranscribeForm(request.POST, request.FILES)
+<<<<<<< HEAD
 
         # Check if the form is valid:
         if form.is_valid():
@@ -97,6 +101,22 @@ def index(request):
             transcript.save()
 
 
+=======
+        print("HERE3")
+        print(form.is_valid())
+
+        # Check if the form is valid:
+        if form.is_valid():
+            print("HERE2")
+
+            # Retrieving the audio file from transcribe request that form has submitted
+            audio_file = request.FILES['audio_file']
+
+            print(audio_file.name)
+            # We need to transcribe now
+
+            transcript = Transcript(transcript="This is the transcript")
+>>>>>>> 5cbe19cb7620306dfc1d36bd168615aed0ac95ea
 
     else:
         # If the request method is not POST, we simply display the form

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
     <body>
+<<<<<<< HEAD
         <div id="parent">
             </br>
             </br>
@@ -34,5 +35,22 @@
                 {% endblock %}
             </div>
         </div>
+=======
+
+    {% block content %}
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit">
+            <div>
+                Transcript:
+                {% if transcript %}
+                    {{ transcript.transcript }}
+                {% endif %}
+            </div>
+        </form>
+    {% endblock %}
+
+>>>>>>> 5cbe19cb7620306dfc1d36bd168615aed0ac95ea
     </body>
 </html>
