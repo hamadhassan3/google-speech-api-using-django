@@ -5,6 +5,7 @@ name = "pypi"
 
 [packages]
 django = "*"
+google-cloud-speech = "*"
 
 [dev-packages]
 

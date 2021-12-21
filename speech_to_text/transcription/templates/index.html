@@ -8,20 +8,31 @@
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     </head>
     <body>
+        <div id="parent">
+            </br>
+            </br>
+            <h1>Speech To Text</h1>
+            <div id="form-container">
+                {% block content %}
+                    <form id="form-id" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="audio-input" class="form-buttons">
+                            {{ form.as_table }}
+                        </div>
+                        </br>
 
-    {% block content %}
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Submit">
-            <div>
-                Transcript:
-                {% if transcript %}
-                    {{ transcript.transcript }}
-                {% endif %}
+                        <input id="transcribe" class="form-buttons" type="submit" value="Transcribe!">
+
+                    </form>
+                    </br>
+                    <div id="transcript">
+                        <b>Transcript:</b>
+                        {% if transcript %}
+                            {{ transcript.transcript }}
+                        {% endif %}
+                    </div>
+                {% endblock %}
             </div>
-        </form>
-    {% endblock %}
-
+        </div>
     </body>
 </html>
